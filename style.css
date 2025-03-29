@@ -7,11 +7,11 @@ body {
 /* Shop list container */
 .shop-list {
   max-width: 800px;
-  margin: 40px auto;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #7763574;
+  background-color: #ffffff;
   border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
@@ -30,7 +30,7 @@ body {
 
 /* Item list section */
 .shop-list .item-list {
-  padding: 20px;
+  padding: 5px;
 }
 
 .shop-list .item-list table {
@@ -40,7 +40,7 @@ body {
 
 .shop-list .item-list th, .shop-list .item-list td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px;
   text-align: left;
 }
 
