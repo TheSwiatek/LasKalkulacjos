@@ -1,4 +1,4 @@
-// item1=vintek 2=pukawka 3=ceram 4=pistolmk2 5=Kajdany 6=tlumik 7=kamza 8=ammo9 9= ammo.45
+// item1=vintek 2=pukawka 3=ceram 4=pistolmk2 5=Kajdany 6=tlumik 7=kamza 8=ammo9 9= ammo.45 10= heavy pistol
 
 
 const prices = {
@@ -11,7 +11,8 @@ const prices = {
     item6: 200000,
     item7: 250000,
     item8: 1500,
-    item9: 1500
+    item9: 1500,
+    item10: 400000
   },
   S: {
     item1: 270000,
@@ -22,7 +23,8 @@ const prices = {
     item6: 200000,
     item7: 200000,
     item8: 1250,
-    item9: 1250
+    item9: 1250,
+    item10: 380000
   }
 };
 
@@ -37,6 +39,7 @@ function calculateTotal() {
   const item7Quantity = parseInt(document.getElementById('item7').value);
   const item8Quantity = parseInt(document.getElementById('item8').value);
   const item9Quantity = parseInt(document.getElementById('item9').value);
+  const item10Quantity = parseInt(document.getElementById('item10').value);
 
   const item1Price = prices[prefix].item1;
   const item2Price = prices[prefix].item2;
@@ -47,8 +50,9 @@ function calculateTotal() {
   const item7Price = prices[prefix].item7;
   const item8Price = prices[prefix].item8;
   const item9Price = prices[prefix].item9;
+  const item10Price = prices[prefix].item10;
 
-  let total = (item1Quantity * item1Price) + (item2Quantity * item2Price) + (item3Quantity * item3Price) + (item4Quantity * item4Price) + (item5Quantity * item5Price) + (item6Quantity * item6Price) + (item7Quantity * item7Price) + (item8Quantity * item8Price) + (item9Quantity * item9Price);
+  let total = (item1Quantity * item1Price) + (item2Quantity * item2Price) + (item3Quantity * item3Price) + (item4Quantity * item4Price) + (item5Quantity * item5Price) + (item6Quantity * item6Price) + (item7Quantity * item7Price) + (item8Quantity * item8Price) + (item9Quantity * item9Price) + (item10Quantity * item10Price);
 
   document.getElementById('total').innerHTML = `${total.toLocaleString()} $`;
 }
