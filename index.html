@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KALKULATOR ZAMÓWIEŃ</title>
+  <style>
+    /* Add some basic styling to make the website more user-friendly */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Shop list container */
+.shop-list {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 100px;
+  background-color: #e6e6e6;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Header section */
+.shop-list header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.shop-list header h1 {
+  margin: 0;
+}
+
+/* Item list section */
+.shop-list {
+  padding: 20px;
+  height: 300px;
+}
+
+.shop-list .item-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shop-list .item-list th, .shop-list .item-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.shop-list .item-list th {
+  background-color: #f0f0f0;
+}
+
+.shop-list .item-list td input[type="number"] {
+  width: 50px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Calculate button */
+
+.calculate-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  margin-top: 8px;
+  box-shadow: 0px 0px 7px 2px #4CAF50;
+}
+
+.calculate-btn:hover {
+    box-shadow: 0px 0px 20px 2px #4CAF50;
+}
+
+.gotowce_calculate-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-left: 20px;
+  box-shadow: 0px 0px 7px 2px #4CAF50;
+  
+}
+
+.gotowce_calculate-btn:hover {
+  box-shadow: 0px 0px 20px 2px #4CAF50;
+}
+
+.refresh {
+  background-color: #ca0000;
+  color: #fff;
+  padding: 10px 17px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* margin-top: 3px; */
+  margin-right: 10px;
+  float: right;
+}
+
+.refresh:hover {
+  box-shadow: 0px 0px 20px 2px #ca0000;
+}
+
+/* Total section */
+.shop-list .total {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.total {
+  box-shadow: 0 0 10px gray;
+  border-radius: 10px;
+  height: 50px;
+}
+
+.shop-list .total span {
+  font-size: 24px;
+  color: #4CAF50;
+}
+
+.build {
+  float:right;
+}
+
+.prefixSelect {
+  border: 1px solid white;
+  background-color: #333;
+  color: white;
+  margin: 3px 0px;
+}
+
+.prefixSelect:hover {
+  border: 1px solid gray;
+}
+
+header {
+  margin-bottom: 10px;
+}
+
+.sum {
+  margin: 13px 0px;
+  float: left;
+}
+
+.sum {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.refresh {
+  margin-top: 8px;
+  box-shadow: 0px 0px 7px 2px #ca0000;
+}
+
+.description {
+  font-size: small;
+  max-width : 50px;
+  background-color: gray;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 2px #333;
+}
+
+.descriptionDiv {
+  float: left;
+  margin-left: 11%;
+  margin-top: 13px;
+}
+
+.item-list {
+  box-shadow: 0px 0px 7px 2px #9e9e9e;
+  margin: 10px 0px;
+  border: none;
+  border-radius: 5px;
+}
+
+.items_class {
+  margin-top: 10px;
+}
+
+.inv_line {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+tr {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+
+#gotowce_vintek, #gotowce_vintek_kajdanki, #gotowce_vintek_tlumik, #gotowce_sns, #gotowce_sns_kajdanki, #gotowce_sns_tlumik {
+  border: 2px solid #333;
+  background-color: #333;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px black;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  max-width: 100px;
+  margin-left: 20%;
+}
+
+#gotowce_vintek:hover, #gotowce_vintek_kajdanki:hover, #gotowce_vintek_tlumik:hover, #gotowce_sns:hover, #gotowce_sns_kajdanki:hover, #gotowce_sns_tlumik:hover {
+  box-shadow: 0px 0px 7px rgb(94, 156, 0);
+}
+
+.gotowce_table {
+  width: 100%;
+  margin-top: 35px;
+}
+
+.malutkie {
+  font-size: x-small;
+}
+  </style>
+  <script>
+    let vintek = 0;
+let kajdanki = 0;
+let tlumik = 0;
+let ammo = 0;
+
+let sns = 0;
+let s_kajdanki = 0;
+let s_tlumik = 0;
+let s_ammo = 0;
+
+const prices = {
+  H: {
+    item1: 300000,
+    item2: 270000,
+    item3: 270000,
+    item4: 270000,
+    item5: 150000,
+    item6: 200000,
+    item7: 250000,
+    item8: 1500,
+    item9: 1500
+  },
+  S: {
+    item1: 270000,
+    item2: 240000,
+    item3: 240000,
+    item4: 240000,
+    item5: 125000,
+    item6: 200000,
+    item7: 200000,
+    item8: 1250,
+    item9: 1250
+  }
+};
+
+const itemNames = {
+  item1: "Vintek",
+  item2: "Pukawka",
+  item3: "Ceram",
+  item4: "SNS 2",
+  item5: "Kajdany",
+  item6: "Tlumik",
+  item7: "Kamza",
+  item8: "Ammo 9mm",
+  item9: "Ammo .45acp"
+};
+
+function PoliczCene() {
+  const prefix = document.getElementById('prefixSelect').value;
+  let total = 0;
+  let descriptionHTML = "";
+
+  for (let i = 1; i <= 9; i++) {
+    const quantity = parseInt(document.getElementById(`item${i}`).value) || 0;
+    const price = prices[prefix][`item${i}`];
+    total += quantity * price;
+
+    if (quantity > 0) {
+      descriptionHTML += ` <a>${itemNames[`item${i}`]} x ${quantity} |-| </a>`;
+    }
+  }
+
+  document.getElementById('total').innerHTML = `${total.toLocaleString()}$`;
+  document.getElementById('description').innerHTML = descriptionHTML;
+}
+
+function refresh() {
+  for (let i = 1; i <= 9; i++) {
+    document.getElementById(`item${i}`).value = '0';
+  }
+
+  document.getElementById('total').innerHTML = `0$`;
+  document.getElementById('description').innerHTML = `<a id="description" class="description">Szczegóły zamówienia </a>`;
+}
+
+function gotowce_vintek() {
+  if (vintek == 0) {
+    document.getElementById('gotowce_vintek').style.boxShadow = `0px 0px 7px rgb(94, 156, 0)`;
+    vintek++;
+  }else{
+    document.getElementById('gotowce_vintek').style.boxShadow = `0px 0px 5px black`;
+    vintek = 0;
+  }
+  
+}
+
+function gotowce_vintek_kajdanki() {
+  if (kajdanki == 0) {
+    document.getElementById('gotowce_vintek_kajdanki').style.boxShadow = `0px 0px 7px rgb(94, 156, 0)`;
+    kajdanki++;
+  }else{
+    document.getElementById('gotowce_vintek_kajdanki').style.boxShadow = `0px 0px 5px black`;
+    kajdanki = 0;
+  }
+  
+}
+
+function gotowce_vintek_tlumik() {
+  if (tlumik == 0) {
+    document.getElementById('gotowce_vintek_tlumik').style.boxShadow = `0px 0px 7px rgb(94, 156, 0)`;
+    tlumik++;
+  }else{
+    document.getElementById('gotowce_vintek_tlumik').style.boxShadow = `0px 0px 5px black`;
+    tlumik = 0;
+  }
+  
+}
+
+
+function gotowce_sns() {
+  if (sns == 0) {
+    document.getElementById('gotowce_sns').style.boxShadow = `0px 0px 7px rgb(94, 156, 0)`;
+    sns++;
+  }else{
+    document.getElementById('gotowce_sns').style.boxShadow = `0px 0px 5px black`;
+    sns = 0;
+  }
+  
+}
+
+function gotowce_sns_kajdanki() {
+  if (s_kajdanki == 0) {
+    document.getElementById('gotowce_sns_kajdanki').style.boxShadow = `0px 0px 7px rgb(94, 156, 0)`;
+    s_kajdanki++;
+  }else{
+    document.getElementById('gotowce_sns_kajdanki').style.boxShadow = `0px 0px 5px black`;
+    s_kajdanki = 0;
+  }
+  
+}
+
+function gotowce_sns_tlumik() {
+  if (s_tlumik == 0) {
+    document.getElementById('gotowce_sns_tlumik').style.boxShadow = `0px 0px 7px rgb(94, 156, 0)`;
+    s_tlumik++;
+  }else{
+    document.getElementById('gotowce_sns_tlumik').style.boxShadow = `0px 0px 5px black`;
+    s_tlumik = 0;
+  }
+  
+}
+
+// function licz_gotowce_vintek() {
+//     let cena = 0;
+//     if (vintek == 0) {
+//       cena += 300000;
+//     }
+//     if (kajdanki == 0) {
+//       cena += 250000;
+//     }
+//     if (tlumik == 0) {
+//       cena += 200000;
+//     }
+//     let gotowce_ammo_temp = 0;
+
+//     cena = 0;
+// }
+
+function licz_gotowce_vintek() {
+  document.getElementById('description').innerHTML = ``;
+  let cena_vintek = 0;
+  if (vintek == 1) {
+    cena_vintek += 300000;
+    document.getElementById('description').innerHTML += `vintek x 1 |-| `;
+  }
+  if (kajdanki == 1) {
+    cena_vintek += 250000;
+    document.getElementById('description').innerHTML += `kajdanki x 1 |-| `;
+  }
+  if (tlumik == 1) {
+    cena_vintek += 200000;
+    document.getElementById('description').innerHTML += `tlumik x 1 |-| `;
+  }
+  let ilosc_ammo_vintek = document.getElementById(`gotowce_ammo_vintek`).value;
+  cena_vintek += ilosc_ammo_vintek * 1500;
+  document.getElementById('description').innerHTML += `Ammo 9mm x ${ilosc_ammo_vintek} - `;
+  let gotowce_ammo_temp_vintek = 0;
+  document.getElementById('total').innerHTML = `${cena_vintek}$`;
+
+  cena_vintek = 0;
+}
+
+function licz_gotowce_sns() {
+  document.getElementById('description').innerHTML = ``;
+  let cena_sns = 0;
+  if (sns == 1) {
+    cena_sns += 300000;
+    document.getElementById('description').innerHTML += `sns x 1 |-| `;
+  }
+  if (s_kajdanki == 1) {
+    cena_sns += 250000;
+    document.getElementById('description').innerHTML += `kajdanki x 1 |-| `;
+  }
+  if (s_tlumik == 1) {
+    cena_sns += 200000;
+    document.getElementById('description').innerHTML += `tlumik x 1 |-| `;
+  }
+  let ilosc_ammo_sns = document.getElementById(`gotowce_ammo_sns`).value;
+  cena_sns += ilosc_ammo_sns * 1500;
+  document.getElementById('description').innerHTML += `Ammo .45acp x ${ilosc_ammo_sns} - `;
+  let gotowce_ammo_temp_sns = 0;
+  document.getElementById('total').innerHTML = `${cena_sns}$`;
+
+  cena_sns = 0;
+}
+  </script>                                             
+</head>
+<body>
+  <div class="shop-list">
+    <header>
+      <h1>KALKULATOR ZAMÓWIEŃ</h1>
+    </header>
+    <div class="item-list">
+      <hr class="inv_line">
+      <table>
+        <tr class="items_class">
+          <th>Przedmiot</th>
+          <th>Vintek</th>
+          <th>Pukawka</th>
+          <th>Ceram</th>
+          <th>Pistolmk2</th>
+          <th>Kajdany</th>
+          <th>Tlumik</th>
+          <th>Kamza</th>
+          <th>Ammo9</th>
+          <th>Ammo.45</th>
+        </tr>
+        <tr>
+          <td style="font-weight: bold;">Ilość</th>
+          <td><input type="number" id="item1" value="0"></td>
+          <td><input type="number" id="item2" value="0"></td>
+          <td><input type="number" id="item3" value="0"></td>
+          <td><input type="number" id="item4" value="0"></td>
+          <td><input type="number" id="item5" value="0"></td>
+          <td><input type="number" id="item6" value="0"></td>
+          <td><input type="number" id="item7" value="0"></td>
+          <td><input type="number" id="item8" value="0"></td>
+          <td><input type="number" id="item9" value="0"></td>
+        </tr>
+      </table>
+      <select class="prefixSelect" id="prefixSelect">
+        <option value="H">H</option>
+        <option value="S">S</option>
+      </select>
+    </div>
+    
+    <div class="total">
+      <a class="sum">Total: <span id="total">0$</span></a>
+      <div class="descriptionDiv"><a id="description" class="description">Szczegóły zamówienia </a></div>
+      <button class="calculate-btn" onclick="PoliczCene()">Sumuj</button>
+      <button class="refresh" id="refreshId" onclick="refresh()">Resetuj</button>
+    </div>
+
+
+  </div>
+
+  <div class="shop-list">
+    <header>
+      <h1>GOTOWCE</h1> <a class="malutkie">Ceny tylko dla klapków</a>
+    </header>
+    <table class="gotowce_table">
+      <tr class="item-list">
+        <th>
+          <button id="gotowce_vintek" onclick="gotowce_vintek()">
+            Vintek
+          </button>
+        </th>
+        <th>
+          <button id="gotowce_vintek_kajdanki" onclick="gotowce_vintek_kajdanki()">
+            Kajdanki
+          </button>
+        </th>
+        <th>
+          <button id="gotowce_vintek_tlumik" onclick="gotowce_vintek_tlumik()">
+            Tłumik
+          </button>
+        </th>
+        <th>Ammo: <input value="100" type="number" id="gotowce_ammo_vintek" class="gotowce_vintek_ammo" placeholder="Ilość Ammo" onchange="gotowce_vintek_ammo_ilosc()">
+        <button class="gotowce_calculate-btn" onclick="licz_gotowce_vintek()">Sumuj</button>
+      </th>
+      </tr>
+    </table>
+    <table class="gotowce_table">
+      <tr class="item-list">
+        <th>
+          <button id="gotowce_sns" onclick="gotowce_sns()">
+            Sns 2
+          </button>
+        </th>
+        <th>
+          <button id="gotowce_sns_kajdanki" onclick="gotowce_sns_kajdanki()">
+            Kajdanki
+          </button>
+        </th>
+        <th>
+          <button id="gotowce_sns_tlumik" onclick="gotowce_sns_tlumik()">
+            Tłumik
+          </button>
+        </th>
+        <th>Ammo: <input value="100" id="gotowce_ammo_sns" type="number" class="gotowce_sns_ammo" placeholder="Ilość Ammo" onchange="gotowce_sns_ammo_ilosc()">
+          <button class="gotowce_calculate-btn" onclick="licz_gotowce_sns()">Sumuj</button>
+        </th>
+      </tr>
+    </table>
+  </div>
+
+
+  <footer><p class="build">By Świątek | Build: 1.03</p></footer>
+</body>
+</html>
