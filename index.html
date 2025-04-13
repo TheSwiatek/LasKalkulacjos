@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KALKULATOR ZAMÓWIEŃ | MODERN PRO</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Main Calculator Card -->
+    <div class="card">
+      <div class="card-header">
+        <h1><i class="fas fa-calculator"></i> KALKULATOR ZAMÓWIEŃ</h1>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Przedmiot</th>
+                <th>Vintek</th>
+                <th>Pukawka</th>
+                <th>Ceram</th>
+                <th>Pistolmk2</th>
+                <th>Kajdany</th>
+                <th>Tłumik</th>
+                <th>Kamza</th>
+                <th>Ammo9</th>
+                <th>Ammo.45</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 500;">Ilość</td>
+                <td><input type="number" id="item1" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item2" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item3" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item4" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item5" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item6" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item7" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item8" class="input-number" value="0" min="0"></td>
+                <td><input type="number" id="item9" class="input-number" value="0" min="0"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+          <div style="flex: 1;">
+            <select class="select" id="prefixSelect">
+              <option value="H" selected>Klapek (H)</option>
+              <option value="S">Kapitan (S)</option>
+            </select>
+          </div>
+          
+          <div class="btn-group" style="display: flex; gap: 10px;">
+            <button class="btn btn-success" onclick="PoliczCene()">
+              <i class="fas fa-calculator"></i> Sumuj
+            </button>
+            <button class="btn btn-danger" onclick="refresh()">
+              <i class="fas fa-redo"></i> Resetuj
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="total-section">
+        <div class="total-wrapper">
+          <span class="total-label">Total:</span>
+          <span class="total-amount" id="total">0$</span>
+        </div>
+        <div class="order-details" id="description">
+          Wybierz przedmioty aby obliczyć koszt
+        </div>
+      </div>
+    </div>
+    
+    <!-- Kits Card -->
+    <div class="card">
+      <div class="card-header">
+        <h1><i class="fas fa-box-open"></i> GOTOWCE <span class="badge">Ceny dla klapków</span></h1>
+      </div>
+      <div class="card-body">
+        <div class="kit-section">
+          <h3><i class="fas fa-gun"></i> Vintek Kit</h3>
+          <div class="kit-controls">
+            <button id="gotowce_vintek" class="kit-btn" onclick="gotowce_vintek()">
+              <i class="fas fa-gun"></i> Vintek
+            </button>
+            <button id="gotowce_vintek_kajdanki" class="kit-btn" onclick="gotowce_vintek_kajdanki()">
+              <i class="fas fa-handcuffs"></i> Kajdanki
+            </button>
+            <button id="gotowce_vintek_tlumik" class="kit-btn" onclick="gotowce_vintek_tlumik()">
+              <i class="fas fa-volume-mute"></i> Tłumik
+            </button>
+            <div class="ammo-control">
+              <input type="number" id="gotowce_ammo_vintek" class="input-number" value="100" placeholder="Ammo" min="0">
+              <button class="btn btn-primary btn-sm" onclick="licz_gotowce_vintek()">
+                <i class="fas fa-calculator"></i> Oblicz
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="kit-section">
+          <h3><i class="fas fa-gun"></i> SNS Kit</h3>
+          <div class="kit-controls">
+            <button id="gotowce_sns" class="kit-btn" onclick="gotowce_sns()">
+              <i class="fas fa-gun"></i> SNS 2
+            </button>
+            <button id="gotowce_sns_kajdanki" class="kit-btn" onclick="gotowce_sns_kajdanki()">
+              <i class="fas fa-handcuffs"></i> Kajdanki
+            </button>
+            <button id="gotowce_sns_tlumik" class="kit-btn" onclick="gotowce_sns_tlumik()">
+              <i class="fas fa-volume-mute"></i> Tłumik
+            </button>
+            <div class="ammo-control">
+              <input type="number" id="gotowce_ammo_sns" class="input-number" value="100" placeholder="Ammo" min="0">
+              <button class="btn btn-primary btn-sm" onclick="licz_gotowce_sns()">
+                <i class="fas fa-calculator"></i> Oblicz
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>By Świątek | Build: 1.03 | <span id="current-date"></span></p>
+    </div>
+  </div>
+
+  <div class="fab" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Current date
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString('pl-PL');
+    
+    let vintek = 0;
+    let kajdanki = 0;
+    let tlumik = 0;
+    let ammo = 0;
+
+    let sns = 0;
+    let s_kajdanki = 0;
+    let s_tlumik = 0;
+    let s_ammo = 0;
+
+    const prices = {
+      H: {
+        item1: 300000,
+        item2: 270000,
+        item3: 270000,
+        item4: 270000,
+        item5: 150000,
+        item6: 200000,
+        item7: 250000,
+        item8: 1500,
+        item9: 1500
+      },
+      S: {
+        item1: 270000,
+        item2: 240000,
+        item3: 240000,
+        item4: 240000,
+        item5: 125000,
+        item6: 200000,
+        item7: 200000,
+        item8: 1250,
+        item9: 1250
+      }
+    };
+
+    const itemNames = {
+      item1: "Vintek",
+      item2: "Pukawka",
+      item3: "Ceram",
+      item4: "SNS 2",
+      item5: "Kajdany",
+      item6: "Tlumik",
+      item7: "Kamza",
+      item8: "Ammo 9mm",
+      item9: "Ammo .45acp"
+    };
+
+    function PoliczCene() {
+      const prefix = document.getElementById('prefixSelect').value;
+      let total = 0;
+      let descriptionHTML = "";
+
+      for (let i = 1; i <= 9; i++) {
+        const quantity = parseInt(document.getElementById(`item${i}`).value) || 0;
+        const price = prices[prefix][`item${i}`];
+        total += quantity * price;
+
+        if (quantity > 0) {
+          descriptionHTML += `${itemNames[`item${i}`]} × ${quantity} | `;
+        }
+      }
+
+      document.getElementById('total').innerHTML = `${total.toLocaleString('pl-PL')}$`;
+      document.getElementById('description').innerHTML = descriptionHTML || "Brak wybranych przedmiotów";
+      
+      // Add animation to total
+      const totalElement = document.getElementById('total');
+      totalElement.style.animation = 'none';
+      void totalElement.offsetWidth; // Trigger reflow
+      totalElement.style.animation = 'pulse 0.5s ease';
+    }
+
+    function refresh() {
+      for (let i = 1; i <= 9; i++) {
+        document.getElementById(`item${i}`).value = '0';
+      }
+
+      document.getElementById('total').innerHTML = `0$`;
+      document.getElementById('description').innerHTML = `Wybierz przedmioty aby obliczyć koszt`;
+      
+      // Reset kit buttons
+      document.querySelectorAll('.kit-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      vintek = kajdanki = tlumik = sns = s_kajdanki = s_tlumik = 0;
+    }
+
+    function gotowce_vintek() {
+      const btn = document.getElementById('gotowce_vintek');
+      vintek = vintek ? 0 : 1;
+      btn.classList.toggle('active', vintek);
+    }
+
+    function gotowce_vintek_kajdanki() {
+      const btn = document.getElementById('gotowce_vintek_kajdanki');
+      kajdanki = kajdanki ? 0 : 1;
+      btn.classList.toggle('active', kajdanki);
+    }
+
+    function gotowce_vintek_tlumik() {
+      const btn = document.getElementById('gotowce_vintek_tlumik');
+      tlumik = tlumik ? 0 : 1;
+      btn.classList.toggle('active', tlumik);
+    }
+
+    function gotowce_sns() {
+      const btn = document.getElementById('gotowce_sns');
+      sns = sns ? 0 : 1;
+      btn.classList.toggle('active', sns);
+    }
+
+    function gotowce_sns_kajdanki() {
+      const btn = document.getElementById('gotowce_sns_kajdanki');
+      s_kajdanki = s_kajdanki ? 0 : 1;
+      btn.classList.toggle('active', s_kajdanki);
+    }
+
+    function gotowce_sns_tlumik() {
+      const btn = document.getElementById('gotowce_sns_tlumik');
+      s_tlumik = s_tlumik ? 0 : 1;
+      btn.classList.toggle('active', s_tlumik);
+    }
+
+    function licz_gotowce_vintek() {
+      let descriptionHTML = ``;
+      let cena_vintek = 0;
+      
+      if (vintek == 1) {
+        cena_vintek += 300000;
+        descriptionHTML += `Vintek × 1 | `;
+      }
+      if (kajdanki == 1) {
+        cena_vintek += 250000;
+        descriptionHTML += `Kajdanki × 1 | `;
+      }
+      if (tlumik == 1) {
+        cena_vintek += 200000;
+        descriptionHTML += `Tłumik × 1 | `;
+      }
+      
+      let ilosc_ammo_vintek = document.getElementById('gotowce_ammo_vintek').value || 0;
+      cena_vintek += ilosc_ammo_vintek * 1500;
+      
+      if (ilosc_ammo_vintek > 0) {
+        descriptionHTML += `Ammo 9mm × ${ilosc_ammo_vintek}`;
+      }
+      
+      document.getElementById('description').innerHTML = descriptionHTML || "Brak elementów w zestawie";
+      document.getElementById('total').innerHTML = `${cena_vintek.toLocaleString('pl-PL')}$`;
+      
+      // Add animation to total
+      const totalElement = document.getElementById('total');
+      totalElement.style.animation = 'none';
+      void totalElement.offsetWidth; // Trigger reflow
+      totalElement.style.animation = 'pulse 0.5s ease';
+    }
+
+    function licz_gotowce_sns() {
+      let descriptionHTML = ``;
+      let cena_sns = 0;
+      
+      if (sns == 1) {
+        cena_sns += 300000;
+        descriptionHTML += `SNS × 1 | `;
+      }
+      if (s_kajdanki == 1) {
+        cena_sns += 250000;
+        descriptionHTML += `Kajdanki × 1 | `;
+      }
+      if (s_tlumik == 1) {
+        cena_sns += 200000;
+        descriptionHTML += `Tłumik × 1 | `;
+      }
+      
+      let ilosc_ammo_sns = document.getElementById('gotowce_ammo_sns').value || 0;
+      cena_sns += ilosc_ammo_sns * 1500;
+      
+      if (ilosc_ammo_sns > 0) {
+        descriptionHTML += `Ammo .45acp × ${ilosc_ammo_sns}`;
+      }
+      
+      document.getElementById('description').innerHTML = descriptionHTML || "Brak elementów w zestawie";
+      document.getElementById('total').innerHTML = `${cena_sns.toLocaleString('pl-PL')}$`;
+      
+      // Add animation to total
+      const totalElement = document.getElementById('total');
+      totalElement.style.animation = 'none';
+      void totalElement.offsetWidth; // Trigger reflow
+      totalElement.style.animation = 'pulse 0.5s ease';
+    }
+
+    // Scroll to top function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show/hide floating action button based on scroll position
+    window.addEventListener('scroll', function() {
+      const fab = document.querySelector('.fab');
+      if (window.pageYOffset > 300) {
+        fab.style.display = 'flex';
+      } else {
+        fab.style.display = 'none';
+      }
+    });
+
+    // Initialize floating action button as hidden
+    document.querySelector('.fab').style.display = 'none';
+
+    // Add input validation to prevent negative numbers
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      input.addEventListener('change', function() {
+        if (this.value < 0) this.value = 0;
+      });
+    });
+  </script>
+</body>
+</html>
